@@ -1,12 +1,18 @@
-export default (posts = [], action) => {
+const initialState = { posts: [], currentPostId: undefined};
+
+const postsReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'UPDATE':
-            return posts.map((post) => post._id === action.payload._id ? action.payload : post);
+            return {...state, posts: state.posts.map((post) => post._id === action.payload._id ? action.payload : post)};
         case 'FETCH_ALL':
-            return action.payload;
+            return {...state, posts: action.payload};
         case 'CREATE':
-            return [...posts, action.payload];
+            return {...state, posts: [...state.posts, action.payload]};
+        case 'SET_CURRENT_POST_ID':
+            return {...state, currentPostId: action.payload};
         default:
-            return posts;
+            return state;
     }
 }
+
+export default postsReducer;

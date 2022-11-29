@@ -30,3 +30,7 @@ export const updatePost = (id, post) => async (dispatch) => {
         console.log(error.message);
     }
 }
+
+export const setCurrentPostId = (id) => {
+    return { type: 'SET_CURRENT_POST_ID', payload: id }
+}
