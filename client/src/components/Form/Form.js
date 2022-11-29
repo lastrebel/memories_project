@@ -10,7 +10,7 @@ import { createPost, updatePost } from "../../actions/posts";
 // GET THE CURRENT ID of the post
 
 
-const Form = ({ currentId, SetCurrentId }) => {
+const Form = ({ currentId, setCurrentId }) => {
     const [postData, setPostData] = useState({creator: '', title: '', message: '', tags: '', selectedFile:''});
     const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null);
     const classes = useStyles();
@@ -31,7 +31,8 @@ const Form = ({ currentId, SetCurrentId }) => {
     }
 
     const clear = () => {
-
+        setCurrentId(null);
+        setPostData({  creator: '', title: '', message: '', tags: '', selectedFile: '', })
     }
 
     return (
